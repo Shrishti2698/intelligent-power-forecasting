@@ -28,3 +28,7 @@ frontend/build/
 
 # IDE
 .idea/
+
+# Model file too large for GitHub
+backend/model.pkl
+
