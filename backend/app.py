@@ -1,3 +1,5 @@
+import os
+import gdown
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -14,6 +16,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+MODEL_URL = "https://drive.google.com/uc?export=download&id=1T3UXUCx0_IPS3vNB5I_Akvt2qC3Dv1bl"
+MODEL_PATH = "backend/model.pkl"  # correct path based on your folder
+
+if not os.path.exists(MODEL_PATH):
+    print("Downloading model from Google Drive...")
+    gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
+    print("Model downloaded.")
+
 
 # Load model
 model = joblib.load("model.pkl")
